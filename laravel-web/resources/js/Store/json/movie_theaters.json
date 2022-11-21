@@ -1,0 +1,22 @@
+[
+    {
+        "movie_theater_cd": "0010010001",
+        "area_cd": "001001",
+        "name": "新宿 三丁目店"
+    }
+    , {
+        "movie_theater_cd": "0010010002",
+        "area_cd": "001001",
+        "name": "新宿 東口"
+    }
+    , {
+        "movie_theater_cd": "0010020001",
+        "area_cd": "001002",
+        "name": "上野 御徒町"
+    }
+    , {
+        "movie_theater_cd": "0010020002",
+        "area_cd": "001001",
+        "name": "上野 マルイ"
+    }
+]

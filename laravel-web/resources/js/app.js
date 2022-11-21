@@ -2,13 +2,24 @@ import './bootstrap';
 import '../css/app.css';
 
 import { createApp, h } from 'vue';
+import { createStore } from 'vuex';
 import { createInertiaApp } from '@inertiajs/inertia-vue3';
 import { InertiaProgress } from '@inertiajs/progress';
 import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
 import { ZiggyVue } from '../../vendor/tightenco/ziggy/dist/vue.m';
+/* import 外部スタイルシート */
+import 'bootstrap/dist/css/bootstrap.min.css';
+import '@vuepic/vue-datepicker/dist/main.css'
+/* import store */
+import myStore from './Store';
 
+// アプリケーション名
 const appName = window.document.getElementsByTagName('title')[0]?.innerText || 'Laravel';
 
+// vuex store
+const store = createStore(myStore);
+
+// vue + inertiaの作成
 createInertiaApp({
     title: (title) => `${title} - ${appName}`,
     resolve: (name) => resolvePageComponent(`./Pages/${name}.vue`, import.meta.glob('./Pages/**/*.vue')),
@@ -16,6 +27,8 @@ createInertiaApp({
         return createApp({ render: () => h(app, props) })
             .use(plugin)
             .use(ZiggyVue, Ziggy)
+            
+            .use(store) // Vuex 自作
             .mount(el);
     },
 });

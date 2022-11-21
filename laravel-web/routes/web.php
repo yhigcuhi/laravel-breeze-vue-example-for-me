@@ -24,8 +24,13 @@ Route::get('/', function () {
     ]);
 });
 
-Route::get('/dashboard', function () {
-    return Inertia::render('Dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+// 認証済の画面
+Route::middleware(['auth', 'verified'])->group(function () {
+    // ダッシュボード画面
+    Route::get('/dashboard', function () { return Inertia::render('Dashboard'); })->name('dashboard');
+    // チケット 作成
+    Route::get('/dashboard/ticket/new', function() { return Inertia::render('TicketEditor'); })->name('ticket.create');
+    // チケット 詳細
+});
 
 require __DIR__.'/auth.php';

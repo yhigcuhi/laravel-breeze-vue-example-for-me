@@ -26,6 +26,8 @@ Route::get('/', function () {
 
 // 認証済の画面
 Route::middleware(['auth', 'verified'])->group(function () {
+    // 共通渡しを試してみる
+    Inertia::share('appName', config('app.name'));
     // ダッシュボード画面
     Route::get('/dashboard', function () { return Inertia::render('Dashboard'); })->name('dashboard');
     // チケット 作成

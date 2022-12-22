@@ -15,7 +15,8 @@ composer require laravel/breeze --dev
 composer install
 php artisan breeze:install vue
 
-npm install & npm run dev
+npm install
+npm run dev
 php artisan migrate
 php artisan serve
 ```

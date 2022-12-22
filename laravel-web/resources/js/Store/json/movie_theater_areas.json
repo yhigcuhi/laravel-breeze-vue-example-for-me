@@ -1,0 +1,20 @@
+[
+    {
+        "area_cd": "001",
+        "parent_area_cd": null,
+        "area_level": 1,
+        "name": "東京"
+    }
+    , {
+        "area_cd": "001001",
+        "parent_area_cd": "001",
+        "area_level": 2,
+        "name": "新宿"
+    }
+    , {
+        "area_cd": "001002",
+        "parent_area_cd": "001",
+        "area_level": 2,
+        "name": "上野"
+    }
+]

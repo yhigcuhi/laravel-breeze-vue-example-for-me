@@ -25,7 +25,22 @@ services:
       - DB_DATABASE=${DB_DATABASE}
       - DB_USERNAME=${DB_USERNAME}
       - DB_PASSWORD=${DB_PASSWORD}
-
+  # Vue Library 開発ようコンテナ
+  lib:
+    # 管理コンテナ名
+    container_name: ${APP_NAME}-vue-lib
+    # Dockerファイルにて定義
+    build: 
+        context: .
+        dockerfile: ./docker/vue-lib/Dockerfile
+    # 場所
+    volumes:
+      - ./vue-lib/:/var/www/html
+    # PORT = for watch
+    ports: 
+      - ${LIB_VITE:-3000}:5173
+    # コンテナを正常終了するのを防ぐ
+    tty: true
   # WEBサーバー (nginx)
   web:
     # 管理コンテナ名

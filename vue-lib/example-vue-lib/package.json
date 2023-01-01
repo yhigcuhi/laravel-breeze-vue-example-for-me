@@ -8,7 +8,9 @@
   "module": "./dist/my-lib.js",
   "scripts": {
     "dev": "vite --host",
+    "dev:staging": "vite --mode staging --host",
     "build": "vite build",
+    "build:staging": "vite build --mode staging",
     "preview": "vite preview"
   },
   "dependencies": {

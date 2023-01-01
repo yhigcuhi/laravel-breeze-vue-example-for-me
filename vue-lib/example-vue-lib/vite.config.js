@@ -34,7 +34,7 @@ export default defineConfig({
       // 適切な拡張子が追加されます
       fileName: 'my-lib',
       // umd,
-      ormats: ['umd', 'esm', 'amd'], // TODO:問題... cjsになるから フロントエンドで使えない?
+      formats: ['umd', 'esm', 'amd'],
     },
     // rollupOptions: {
     //   // ライブラリにバンドルされるべきではない依存関係を

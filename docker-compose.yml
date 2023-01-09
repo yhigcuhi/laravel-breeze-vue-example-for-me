@@ -15,16 +15,23 @@ services:
       - ./laravel-web/:/var/www/html
     ports:
       - 5173:5173
-    # DB定義
+    # 環境設定値設定
     environment:
+      # アプリ名反映
       - APP_NAME=${APP_NAME}
       - APP_URL=${APP_URL}
+      # DB 接続定義
       - DB_CONNECTION=${DB_CONNECTION}
       - DB_HOST=${DB_HOST}
       - DB_PORT=${DB_PORT}
       - DB_DATABASE=${DB_DATABASE}
       - DB_USERNAME=${DB_USERNAME}
       - DB_PASSWORD=${DB_PASSWORD}
+      # memcached 設定定義
+      - MEMCACHED_PORT=${MEMCACHED_PORT:-11211}
+      - MEMCACHED_HOST=${MEMCACHED_HOST:-example-memcached}
+      - SESSION_DRIVER=${SESSION_DRIVER:-memcached}
+      - CACHE_DRIVER=${CACHE_DRIVER:-memcached}
   # Vue Library 開発ようコンテナ
   lib:
     # 管理コンテナ名
@@ -78,4 +85,14 @@ services:
     volumes:
       - ./db/postgres:/var/lib/postgresql/data
       - ./db/logs:/var/log
-  # WEBアプリケーション
+  # memcached
+  memcached:
+    # memcached
+    image: memcached
+    # 管理コンテナ名
+    container_name: ${APP_NAME}-memcached
+    # ホスト名
+    hostname: ${MEMCACHED_HOST}
+    # 利用ポート 11211 MEMCACHED
+    ports:
+      - ${MEMCACHED_PORT:-11211}:11211

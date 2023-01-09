@@ -18,7 +18,14 @@ RUN apt-get update && \
     unzip \
     vim \
     libpq-dev \
+    libmemcached-dev \
+    zlib1g-dev \
     && docker-php-ext-install pgsql pdo_pgsql bcmath
+# php 標準以外の 拡張モジュールのインストール (for memcached)
+RUN pecl install memcached && docker-php-ext-enable memcached
+# memcached 確認用 memcached-tool コマンドインストール
+RUN curl -o /usr/bin/memcached-tool https://raw.githubusercontent.com/memcached/memcached/1.4.35/scripts/memcached-tool
+RUN chmod +x /usr/bin/memcached-tool
 
 # srcとなるディレクトリ？なのかw
 WORKDIR /var/www/html
